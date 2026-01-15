@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Stock Analysis Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+<header>
+    <h1>Stock Analysis Dashboard</h1>
+</header>
+
+<main id="dashboard-container">
+
+    <!-- Left panel - stock selection -->
+    <aside id="controls-panel">
+        <form id="dashboard-form">
+
+            <section class="form-group">
+                <label for="stock-select">Select Stock:</label>
+                <select id="stock-select">
+                    <option value="Palantir">Palantir</option>
+                    <option value="Nvidia">Nvidia</option>
+                    <option value="Paypal">Paypal</option>
+                </select>
+                <button type="button" id="load-btn">Load Data</button>
+                <pre id="output"></pre>
+            </section>
+
+            <section class="form-group">
+                <button type="button" id="select-all">Select All Indicators</button>
+                <button type="button" id="deselect-all">Deselect All Indicators</button>
+            </section>
+
+            <section class="form-group">
+                <label>
+                    <input type="checkbox" id="toggle-indicators" checked>
+                    Show indicators on chart
+                </label>
+            </section>
+
+            <!-- Indicators -->
+            <fieldset class="form-group">
+                <legend>Indicators</legend>
+
+                <!-- Moving Average -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="MA" checked>
+                        Moving Average
+                    </label>
+                    <div class="indicator-values">
+                        <label>Window:
+                            <input type="number" id="ma-input" min="5" max="50" value="30">
+                            <input type="range" id="ma-slider" min="5" max="50" value="30">
+                        </label>
+                    </div>
+                </section>
+
+                <!-- EMA -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="EMA" checked>
+                        EMA
+                    </label>
+                    <div class="indicator-values">
+                        <label>Span:
+                            <input type="number" id="ema-input" min="5" max="50" value="14">
+                            <input type="range" id="ema-slider" min="5" max="50" value="14">
+                        </label>
+                    </div>
+                </section>
+
+                <!-- RSI -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="RSI" checked>
+                        RSI
+                    </label>
+                    <div class="indicator-values">
+                        <label>Period:
+                            <input type="number" id="rsi-input" min="5" max="30" value="14">
+                            <input type="range" id="rsi-slider" min="5" max="30" value="14">
+                        </label>
+                    </div>
+                </section>
+
+                <!-- MACD -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="MACD" checked>
+                        MACD
+                    </label>
+                    <div class="indicator-values">
+                        <label>Short Span:
+                            <input type="number" id="macd-short-input" min="5" max="30" value="12">
+                            <input type="range" id="macd-short-slider" min="5" max="30" value="12">
+                        </label>
+                        <label>Long Span:
+                            <input type="number" id="macd-long-input" min="10" max="50" value="26">
+                            <input type="range" id="macd-long-slider" min="10" max="50" value="26">
+                        </label>
+                        <label>Signal Span:
+                            <input type="number" id="macd-signal-input" min="5" max="20" value="9">
+                            <input type="range" id="macd-signal-slider" min="5" max="20" value="9">
+                        </label>
+                    </div>
+                </section>
+
+                <!-- ATR -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="ATR" checked>
+                        ATR
+                    </label>
+                    <div class="indicator-values">
+                        <label>Period:
+                            <input type="number" id="atr-input" min="5" max="50" value="14">
+                            <input type="range" id="atr-slider" min="5" max="50" value="14">
+                        </label>
+                    </div>
+                </section>
+
+                <!-- Bollinger Bands -->
+                <section class="indicator">
+                    <label class="indicator-label">
+                        <input type="checkbox" class="indicator-checkbox" value="BB" checked>
+                        Bollinger Bands
+                    </label>
+                    <div class="indicator-values">
+                        <label>Window:
+                            <input type="number" id="bb-window-input" min="5" max="50" value="20">
+                            <input type="range" id="bb-window-slider" min="5" max="50" value="20">
+                        </label>
+                        <label>Num Std:
+                            <input type="number" id="bb-std-input" min="1" max="5" value="2">
+                            <input type="range" id="bb-std-slider" min="1" max="5" value="2">
+                        </label>
+                    </div>
+                </section>
+
+            </fieldset>
+
+          
+
+        </form>
+    </aside>
+
+    <!-- Right panel - data table preview -->
+    <aside id="preview-panel">
+        <section>
+            <h3>Data Preview</h3>
+            <table id="data-preview"></table>
+            <button id="download-btn">Download CSV</button>
+        </section>
+    </aside>
+
+</main>
+
+<!-- Chart -->
+<section id="chart-container">
+    <canvas id="stockChart"></canvas>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>
