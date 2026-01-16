@@ -13,27 +13,6 @@ The backend is built with **FastAPI** and the frontend uses pure **Vanilla HTML/
 - Uvicorn
 - [PIP](https://pip.pypa.io/en/stable/installation/) or [Miniconda](https://www.anaconda.com/docs/getting-started/miniconda/install)
 
-## Project Structure (important folders/files)
-task
-├── frontend
-│   ├── app.js
-│   ├── index.html
-│   └── style.css
-├── raw_data
-│   ├── NVDA_raw.csv
-│   ├── PLTR_raw.csv
-│   └── PYPL_raw.csv
-├── stock_analysis
-│   ├__pycache__
-│   │   ├── indicators.cpython-312.pyc
-│   │   ├── load_stock.cpython-312.pyc
-│   │   ├── load_stock.cpython-313.pyc
-│   │   └── process_data.cpython-312.pyc
-│   ├── indicators.py
-│   ├── load_stock.py
-│   └── process_data.py
-├── instructions.md
-└── main.py
 
 
 ## Step-by-Step Setup
